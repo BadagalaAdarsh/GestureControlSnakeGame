@@ -15,9 +15,9 @@ width, height = int(cap.get(3)), int(cap.get(4))
 
 # Set up text parameters
 font = cv2.FONT_HERSHEY_SIMPLEX
-text_position = (int(width / 2) - 50, int(height / 2))
+text_position = (int(width / 2)-75 , int(height / 6))
 font_scale = 1
-font_color = (0, 255, 0)
+font_color = (0, 0, 255)
 line_type = 2
 
 # Initialize Pygame
@@ -41,11 +41,11 @@ score_font = pygame.font.SysFont(None, 30)
 
 # Set up snake properties
 snake_block = 20
-snake_speed = 3
+snake_speed = 4
 
 # Function to display score and time
 def show_score(score, elapsed_time):
-    score_text = score_font.render("Score: " + str(score) + "    Time: " + str(elapsed_time) + "s", True, white)
+    score_text = score_font.render("Score: " + str(score) + "    Time: " + str(elapsed_time) + "s", True, red)
     screen.blit(score_text, [10, 10])
 
 # Function to draw the snake
@@ -83,7 +83,10 @@ def game_loop():
         counter = 0
         while not game_over:
             ret, frame = cap.read()
+
+            # added counter to process every 3rd frame to reduce lag
             counter += 1
+            
             if not ret:
                 break
 
